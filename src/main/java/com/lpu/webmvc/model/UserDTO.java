@@ -1,4 +1,4 @@
-package com.lpu.webmvc.controller.model;
+package com.lpu.webmvc.model;
 
 public class UserDTO {
     private String fullName;

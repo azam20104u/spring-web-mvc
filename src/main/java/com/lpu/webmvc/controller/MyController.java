@@ -1,6 +1,8 @@
 package com.lpu.webmvc.controller;
 
-import com.lpu.webmvc.controller.model.UserDTO;
+import com.lpu.webmvc.model.UserDTO;
+import com.lpu.webmvc.service.MyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -8,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/") //indication to the Handler mapping
 @Component
 public class MyController {// this the class will behave as a controller class
+
+
 
     @RequestMapping("/hi")
     public String hi() {
@@ -33,12 +37,17 @@ public class MyController {// this the class will behave as a controller class
         return "registration";
     }
 
+    @Autowired
+    private MyService service;
+
     @PostMapping("/registrationForm")
     public ModelAndView registrationForm(@ModelAttribute UserDTO dto){
+        System.out.println("MyController registrationForm() has executed");
         System.out.println(dto.getEmail());
         System.out.println(dto.getFullName());
         System.out.println(dto.getPassword());
         System.out.println(dto.getPhone());
+        service.save(dto);
         return new ModelAndView("regSuccess","dto",dto);
     }
 
