@@ -60,6 +60,7 @@
     <h2>Register</h2>
 
     <form action = "registrationForm" method = "POST">
+      <input type="number" placeholder="Enter Id" name="id" />
       <input type="text" placeholder="Full Name" name="fullName" />
       <input type="email" placeholder="Email" name="email" />
       <input type="number" placeholder="Phone Number" name="phone" />

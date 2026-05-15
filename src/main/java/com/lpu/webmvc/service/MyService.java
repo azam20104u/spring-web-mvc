@@ -11,9 +11,11 @@ public class MyService {
     private MyDAO dao;
     public Boolean save(UserDTO dto){
         System.out.println("MyService save() has executed...");
-        System.out.println(dto.getFullName());
-        System.out.println(dto.getEmail());
         dao.save(dto);
         return true;
+    }
+
+    public boolean loginValidation(String email, Long password) {
+        return dao.loginValidation(email, password);
     }
 }

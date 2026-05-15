@@ -1,10 +1,26 @@
 package com.lpu.webmvc.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class UserDTO {
+    @Id
+    private int id;
     private String fullName;
     private String email;
     private Long phone;
     private Long password;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getFullName() {
         return fullName;

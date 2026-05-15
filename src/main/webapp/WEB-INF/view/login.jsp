@@ -61,7 +61,7 @@
     <h2>Login</h2>
     <h3 color="red">${msg}</h3>
     <form action="loginValidation" method="post">
-      <input type="text" placeholder="Username" name="username" />
+      <input type="text" placeholder="email" name="email" />
       <input type="password" placeholder="Password" name="password" />
 
       <input type="submit" value="Login"/>

@@ -11,7 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Component
 public class MyController {// this the class will behave as a controller class
 
-
+    @Autowired
+    private MyService service;
 
     @RequestMapping("/hi")
     public String hi() {
@@ -24,9 +25,9 @@ public class MyController {// this the class will behave as a controller class
     }
 
     @RequestMapping(value = "/loginValidation", method = RequestMethod.POST)
-    public ModelAndView loginValidation(@RequestParam String username, @RequestParam String password){
-        if (username.equals("admin") && password.equals("admin1234")){
-            return  new ModelAndView("loginSuccess","user",username);
+    public ModelAndView loginValidation(@RequestParam String email, @RequestParam Long password){
+        if (service.loginValidation(email,password)){
+            return  new ModelAndView("loginSuccess","user",email);
         }else {
             return new ModelAndView("login","msg","login failed, please try again");
         }
@@ -37,16 +38,11 @@ public class MyController {// this the class will behave as a controller class
         return "registration";
     }
 
-    @Autowired
-    private MyService service;
+
 
     @PostMapping("/registrationForm")
     public ModelAndView registrationForm(@ModelAttribute UserDTO dto){
         System.out.println("MyController registrationForm() has executed");
-        System.out.println(dto.getEmail());
-        System.out.println(dto.getFullName());
-        System.out.println(dto.getPassword());
-        System.out.println(dto.getPhone());
         service.save(dto);
         return new ModelAndView("regSuccess","dto",dto);
     }
